@@ -1,4 +1,5 @@
 import 'package:asdrome_pos/src/layout/home_view.dart';
+import 'package:asdrome_pos/src/manage_products/product_view.dart';
 import 'package:asdrome_pos/src/manage_products/products_controller.dart';
 import 'package:asdrome_pos/src/theme/theme.dart';
 import 'package:dynamic_color/dynamic_color.dart';
@@ -98,6 +99,8 @@ class MyApp extends StatelessWidget {
         return const SampleItemListView();
       case AddProductView.routeName:
         return AddProductView(controller: productsController);
+      case ProductListView.routeName:
+        return const ProductListView(collectionName: "cuidados_diarios");
       default:
         return const HomeView();
     }

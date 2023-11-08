@@ -85,7 +85,7 @@ class AddProductViewState extends State<AddProductView> {
               TextFormField(
                 decoration: const InputDecoration(hintText: 'Descuento'), // Cambiado de labelText a hintText
                 keyboardType: TextInputType.number,
-                onSaved: (value) => _product.discount = -1*double.parse(value!),
+                onSaved: (value) => _product.discount = double.parse(value!),
               ),
               const SizedBox(height: 20),
               // Campo de selección de lista desplegable

@@ -61,7 +61,9 @@ class HomeView extends StatelessWidget {
                 ),
                 const SizedBox(width: 10),
                 IconButton.filledTonal(
-                  onPressed: () {},
+                  onPressed: () {
+                     Navigator.restorablePushNamed(context, "/products");
+                  },
                   icon: const Icon(Icons.view_kanban),
                 ),
                 const SizedBox(width: 10),
