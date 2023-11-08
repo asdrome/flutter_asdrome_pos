@@ -1,3 +1,6 @@
+import 'package:asdrome_pos/src/layout/home_view.dart';
+import 'package:asdrome_pos/src/manage_products/add_product_view.dart';
+import 'package:asdrome_pos/src/manage_products/products_controller.dart';
 import 'package:asdrome_pos/src/theme/theme.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:asdrome_pos/src/theme/color_schemes.dart';
@@ -90,8 +93,9 @@ class MyApp extends StatelessWidget {
       case SampleItemDetailsView.routeName:
         return const SampleItemDetailsView();
       case SampleItemListView.routeName:
-      default:
         return const SampleItemListView();
+      default:
+        return AddProductView(controller: ProductsController());
     }
   }
 }

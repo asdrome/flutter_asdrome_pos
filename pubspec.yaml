@@ -13,9 +13,11 @@ dependencies:
   dynamic_color: ^1.6.8
   flutter:
     sdk: flutter
+  flutter_adaptive_scaffold: ^0.1.7+1
   flutter_localizations:
     sdk: flutter
   intl: any
+  pocketbase: ^0.16.0
 
 dev_dependencies:
   flutter_test:
