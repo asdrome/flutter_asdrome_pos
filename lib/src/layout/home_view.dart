@@ -28,7 +28,11 @@ class HomeView extends StatelessWidget {
           children: [
             Row(
               children: [
-                FilledButton(onPressed: () {}, child: const Text('Nuevo')),
+                FilledButton(
+                    onPressed: () {
+                      Navigator.restorablePushNamed(context, "/add");
+                    },
+                    child: const Text('Nuevo')),
                 const SizedBox(width: 10),
                 const Text("Productos"),
                 const Spacer(),
@@ -72,22 +76,11 @@ class HomeView extends StatelessWidget {
                     // Navigate to the settings page. If the user leaves and returns
                     // to the app after it has been killed while running in the
                     // background, the navigation stack is restored.
-                    Navigator.restorablePushNamed(
-                        context, "/settings");
+                    Navigator.restorablePushNamed(context, "/settings");
                   },
                 ),
               ],
             ),
-            ElevatedButton(
-                onPressed: () {}, child: const Text('Elevated Button')),
-            const Card(
-              child: Text("Omlam"),
-            ),
-            FloatingActionButton(
-              backgroundColor: Theme.of(context).colorScheme.primary,
-              onPressed: () {},
-              child: const Icon(Icons.ac_unit),
-            )
           ],
         ),
       ),

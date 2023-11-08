@@ -1,5 +1,4 @@
 import 'package:asdrome_pos/src/layout/home_view.dart';
-import 'package:asdrome_pos/src/manage_products/add_product_view.dart';
 import 'package:asdrome_pos/src/manage_products/products_controller.dart';
 import 'package:asdrome_pos/src/theme/theme.dart';
 import 'package:dynamic_color/dynamic_color.dart';
@@ -13,6 +12,8 @@ import 'sample_feature/sample_item_details_view.dart';
 import 'sample_feature/sample_item_list_view.dart';
 import 'settings/settings_controller.dart';
 import 'settings/settings_view.dart';
+
+import 'manage_products/add_product_view.dart';
 
 /// The Widget that configures your application.
 class MyApp extends StatelessWidget {
@@ -87,6 +88,7 @@ class MyApp extends StatelessWidget {
   }
 
   Widget _buildRoutes(RouteSettings routeSettings) {
+    final productsController = ProductsController();
     switch (routeSettings.name) {
       case SettingsView.routeName:
         return SettingsView(controller: settingsController);
@@ -94,8 +96,10 @@ class MyApp extends StatelessWidget {
         return const SampleItemDetailsView();
       case SampleItemListView.routeName:
         return const SampleItemListView();
+      case AddProductView.routeName:
+        return AddProductView(controller: productsController);
       default:
-        return AddProductView(controller: ProductsController());
+        return const HomeView();
     }
   }
 }
