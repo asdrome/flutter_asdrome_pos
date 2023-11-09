@@ -5,35 +5,38 @@ import 'products_controller.dart';
 class ProductItem extends StatelessWidget {
   final Product product;
 
-  const ProductItem({Key? key, required this.product}) : super(key: key);
+  const ProductItem({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
     return Card(
       elevation: 3, // Elevación del card
-      margin: EdgeInsets.all(10), // Márgenes del card
+      margin: const EdgeInsets.all(10), // Márgenes del card
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Nombre: ${product.name}',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            AspectRatio(
+              aspectRatio: 16 / 9, // Proporción para hacer la tarjeta más ancha
+              child: Image.network(
+                product.imageSrc,
+                fit: BoxFit.cover, // Ajuste de la imagen
+              ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
+            Text(
+              product.name,
+              style: const TextStyle(
+                  fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 8),
             Text('Marca: ${product.brand}'),
             Text('ID: ${product.id}'),
             Text('Colección: ${product.collectionName}'),
-            Image.network(
-              product.imageSrc,
-              height: 150, // Altura de la imagen
-              width: double.infinity, // Ancho de la imagen
-              fit: BoxFit.cover, // Ajuste de la imagen
-            ),
-            SizedBox(height: 8),
-            Text('Precio: \$${product.price.toStringAsFixed(2)}'), // Formatea el precio con dos decimales
-            Text('Descuento: ${product.discount.toStringAsFixed(2)}%'), // Formatea el descuento con dos decimales
+            Text(
+                'Precio: \$${product.price.toStringAsFixed(2)}'), // Formatea el precio con dos decimales
+            Text(
+                'Descuento: ${product.discount.toStringAsFixed(2)}%'), // Formatea el descuento con dos decimales
           ],
         ),
       ),
@@ -41,19 +44,19 @@ class ProductItem extends StatelessWidget {
   }
 }
 
-class ProductListView extends StatefulWidget {
+class ProductGridView extends StatefulWidget {
   final String collectionName;
 
-  const ProductListView({super.key, required this.collectionName});
+  const ProductGridView({super.key, required this.collectionName});
   static const routeName = '/products';
 
   @override
-  ProductListViewState createState() => ProductListViewState();
+  ProductGridViewState createState() => ProductGridViewState();
 }
 
-class ProductListViewState extends State<ProductListView> {
+class ProductGridViewState extends State<ProductGridView> {
   int _currentPage = 1;
-  final int _itemsPerPage = 10; // Número de productos por página
+  final int _itemsPerPage = 20; // Número de productos por página
   List<Product> _products = [];
   final ProductsController _productsController = ProductsController();
 
@@ -84,7 +87,10 @@ class ProductListViewState extends State<ProductListView> {
       appBar: AppBar(
         title: const Text('Productos'),
       ),
-      body: ListView.builder(
+      body: GridView.builder(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 4, // Número de columnas
+        ),
         itemCount: _products.length,
         itemBuilder: (context, index) {
           return ProductItem(product: _products[index]);

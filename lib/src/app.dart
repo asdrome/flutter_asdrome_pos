@@ -99,8 +99,8 @@ class MyApp extends StatelessWidget {
         return const SampleItemListView();
       case AddProductView.routeName:
         return AddProductView(controller: productsController);
-      case ProductListView.routeName:
-        return const ProductListView(collectionName: "cuidados_diarios");
+      case ProductGridView.routeName:
+        return const ProductGridView(collectionName: "cuidados_diarios");
       default:
         return const HomeView();
     }
